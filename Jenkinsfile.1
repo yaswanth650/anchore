@@ -7,8 +7,8 @@ stages {
       }
       }
 
-stage('ANCHORE') {
-      Analyze: {
+  stage('ANCHORE'){
+   steps{
         writeFile file: anchorefile, text: 'docker.io/gesellix/trufflehog'
         anchore annotations: [[key: 'from', value: 'Jenkins']], autoSubscribeTagUpdates: false, bailOnFail: false, engineRetries: '10000', name: 'anchore_images'
       }
